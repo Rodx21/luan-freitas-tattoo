@@ -1,67 +1,67 @@
+import { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
   const location = useLocation();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const links = [
-    { label: "Home", path: "/" },
-    { label: "About", path: "/about" },
+    { label: "Home",      path: "/" },
+    { label: "About",     path: "/about" },
     { label: "Portfolio", path: "/portfolio" },
-    { label: "Book", path: "/book" },
+    { label: "Book",      path: "/book" },
   ];
 
   return (
     <Box
       sx={{
-        position: "absolute",
+        position: "fixed",
         top: 0,
         left: 0,
         width: "100%",
-        pt: { xs: 2.5, md: 3 },
+        pt: scrolled ? 1.5 : { xs: 2.5, md: 3 },
+        pb: scrolled ? 1.5 : 0,
         px: { xs: 3, md: 6 },
-        zIndex: 10,
+        zIndex: 1000,
         display: "grid",
         gridTemplateColumns: "1fr auto 1fr",
         alignItems: "center",
-        pointerEvents: "none",
+        backdropFilter: scrolled ? "blur(20px) saturate(160%)" : "none",
+        backgroundColor: scrolled ? "rgba(12,9,6,0.78)" : "transparent",
+        borderBottom: scrolled ? "1px solid rgba(240,235,225,0.06)" : "1px solid transparent",
+        transition: "backdrop-filter 0.4s ease, background-color 0.4s ease, padding 0.4s ease, border-color 0.4s ease",
+        willChange: "backdrop-filter",
       }}
     >
-      {/* Left: LF Logo (2x bigger) */}
+      {/* Left: monogram */}
       <Box
         component={Link}
         to="/"
-        sx={{
-          justifySelf: "start",
-          display: "inline-flex",
-          alignItems: "center",
-          textDecoration: "none",
-          pointerEvents: "auto",
-        }}
+        sx={{ justifySelf: "start", display: "inline-flex", alignItems: "center", textDecoration: "none" }}
       >
         <img
           src="/assets/logos/monogram_lf_transparent_gold.png"
-          alt="Luan Freitas Tattoo"
+          alt="Luan Freitas"
           style={{
-            height: "64px",
+            height: scrolled ? "44px" : "58px",
             width: "auto",
             display: "block",
-            opacity: 0.98,
+            opacity: 0.97,
+            transition: "height 0.4s ease",
           }}
         />
       </Box>
 
-      {/* Center: Menu */}
-      <Box
-        sx={{
-          justifySelf: "center",
-          display: "flex",
-          gap: { xs: 2.5, md: 3.5 },
-          alignItems: "center",
-          pointerEvents: "auto",
-        }}
-      >
+      {/* Center: nav links */}
+      <Box sx={{ justifySelf: "center", display: "flex", gap: { xs: 2.5, md: 4 }, alignItems: "center" }}>
         {links.map((item) => {
           const isActive = location.pathname === item.path;
           return (
@@ -72,26 +72,27 @@ export default function Navbar() {
               sx={{
                 textDecoration: "none",
                 color: "text.primary",
-                fontSize: 12,
-                letterSpacing: 2.5,
+                fontSize: 11,
+                letterSpacing: 3,
                 textTransform: "uppercase",
-                opacity: isActive ? 1 : 0.82,
+                opacity: isActive ? 1 : 0.65,
                 position: "relative",
                 py: 0.5,
+                transition: "opacity 0.2s",
                 "&:after": {
                   content: '""',
                   position: "absolute",
                   left: 0,
                   right: 0,
-                  margin: "0 auto",
-                  bottom: -4,
-                  height: "2px",
-                  width: isActive ? "100%" : "0%",
-                  backgroundColor: "rgba(255,255,255,0.9)",
-                  transition: "width 0.2s ease",
+                  bottom: -3,
+                  height: "1px",
+                  backgroundColor: "primary.main",
+                  transform: isActive ? "scaleX(1)" : "scaleX(0)",
+                  transformOrigin: "left",
+                  transition: "transform 0.25s ease",
                 },
                 "&:hover": { opacity: 1 },
-                "&:hover:after": { width: "100%" },
+                "&:hover:after": { transform: "scaleX(1)" },
               }}
             >
               {item.label}
@@ -100,15 +101,8 @@ export default function Navbar() {
         })}
       </Box>
 
-      {/* Right: Instagram (2x bigger) */}
-      <Box
-        sx={{
-          justifySelf: "end",
-          display: "flex",
-          alignItems: "center",
-          pointerEvents: "auto",
-        }}
-      >
+      {/* Right: Instagram */}
+      <Box sx={{ justifySelf: "end", display: "flex", alignItems: "center" }}>
         <Box
           component="a"
           href="https://www.instagram.com/luanfreitas_tattoo/"
@@ -119,15 +113,12 @@ export default function Navbar() {
             display: "inline-flex",
             alignItems: "center",
             justifyContent: "center",
-            width: 60,
-            height: 60,
-            borderRadius: "999px",
-            color: "rgba(255,255,255,0.9)",
-            opacity: 0.9,
-            "&:hover": { opacity: 1, color: "primary.main" },
+            color: "rgba(240,235,225,0.6)",
+            transition: "color 0.2s",
+            "&:hover": { color: "primary.main" },
           }}
         >
-          <InstagramIcon sx={{ fontSize: 36 }} />
+          <InstagramIcon sx={{ fontSize: 26 }} />
         </Box>
       </Box>
     </Box>

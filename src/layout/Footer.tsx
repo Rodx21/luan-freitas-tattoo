@@ -6,15 +6,15 @@ export default function Footer() {
       sx={{
         px: { xs: 3, md: 10 },
         py: 6,
-        borderTop: "1px solid rgba(255,255,255,0.08)",
+        borderTop: "1px solid rgba(240,235,225,0.07)",
         opacity: 0.75,
       }}
     >
       <Typography sx={{ fontSize: 12, letterSpacing: 2, textTransform: "uppercase" }}>
-        Luan Freitas Tattoo • Dublin
+        Luan Freitas Tattoo ï¿½ Dublin
       </Typography>
       <Typography sx={{ fontSize: 12, mt: 1, opacity: 0.7 }}>
-        © {new Date().getFullYear()} All rights reserved.
+        ï¿½ {new Date().getFullYear()} All rights reserved.
       </Typography>
     </Box>
   );

@@ -4,13 +4,13 @@ const theme = createTheme({
   palette: {
     mode: "dark",
     background: {
-      default: "#0A0A0A",
-      paper: "#111111",
+      default: "#0C0906",
+      paper:   "#141008",
     },
-    primary: { main: "#C6A75E" },
+    primary: { main: "#C9A86C" },
     text: {
-      primary: "#FFFFFF",
-      secondary: "rgba(255,255,255,0.65)",
+      primary:   "#F0EBE1",
+      secondary: "rgba(240,235,225,0.55)",
     },
   },
   typography: {

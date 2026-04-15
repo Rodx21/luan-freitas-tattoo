@@ -17,9 +17,9 @@ export default function HeroButton({ label, ...props }: HeroButtonProps) {
         borderRadius: 0,
         px: 3.5,
 
-        backgroundColor: "rgba(255,255,255,0.02)",
-        color: "rgba(255,255,255,0.92)",
-        border: "1px solid rgba(255,255,255,0.55)",
+        backgroundColor: "rgba(240,235,225,0.02)",
+        color: "rgba(240,235,225,0.92)",
+        border: "1px solid rgba(240,235,225,0.45)",
         backdropFilter: "blur(6px)",
 
         fontFamily: "Inter",
@@ -39,7 +39,7 @@ export default function HeroButton({ label, ...props }: HeroButtonProps) {
           right: 18,
           bottom: 10,
           height: "1px",
-          backgroundColor: "rgba(255,255,255,0.25)",
+          backgroundColor: "rgba(240,235,225,0.2)",
           transform: "scaleX(0.0)",
           transformOrigin: "left",
           transition: "transform 180ms ease",
@@ -50,9 +50,9 @@ export default function HeroButton({ label, ...props }: HeroButtonProps) {
 
         "&:hover": {
           transform: "translateY(-2px)",
-          backgroundColor: "rgba(255,255,255,0.10)",
-          borderColor: "rgba(198,167,94,0.9)",
-          color: "#FFFFFF",
+          backgroundColor: "rgba(240,235,225,0.08)",
+          borderColor: "rgba(201,168,108,0.85)",
+          color: "#F0EBE1",
         },
         "&:hover:after": { transform: "scaleX(1)" },
         "&:active": { transform: "translateY(1px)" },
