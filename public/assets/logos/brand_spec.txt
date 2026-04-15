@@ -1,0 +1,19 @@
+Brand name: Luan Freitas Tattoo
+Style: Luxury minimalist, editorial, premium tattoo studio
+Primary palette:
+- Black: #0A0A0A
+- Muted champagne gold: #C6A75E
+
+Logo system:
+1. Full logo
+2. Monogram (LF)
+3. Wordmark
+
+Preferred background pairings:
+- Gold logo on black
+- Black logo on white
+- White logo on photography or dark overlays
+
+File formats included:
+- PNG on black
+- Transparent PNG (gold / black / white)
