@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# local archives / debug output
+*.rar
+debug_bundle.txt
